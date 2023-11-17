@@ -1,0 +1,16 @@
+{
+    "name": "e.s.atsma/laracast",
+    "authors": [
+        {
+            "name": "l.atsma",
+            "email": "latsma@enrise.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "Http\\": "Http/"
+        }
+    }
+}
