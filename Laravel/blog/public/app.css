@@ -1,0 +1,22 @@
+body {
+    background: #333333;
+    color: #333333;
+    font-family: sans-serif;
+    max-width: 600px;
+    margin: auto;
+}
+
+p {
+    line-height: 1.6;
+}
+
+article {
+    background: #ffffff;
+    border-radius: 5%;
+    padding: 3rem;
+    margin-top: 3rem;
+}
+
+article + article {
+
+}
