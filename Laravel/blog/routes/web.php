@@ -1,6 +1,11 @@
 <?php
 
+use App\Models\Category;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Illuminate\View\View;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,24 +18,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (): View {
     return view('welcome');
 });
 
-Route::get('/posts', function () {
-    return view('posts');
+Route::get('/posts', function () : View {
+    return view('posts', [
+        'posts' => Post::latest()->with('category', 'author')->get()
+    ]);
 });
 
-Route::get('/posts/{post}', function ($slug) {
-    $path = __DIR__ . "/../resources/posts/{$slug}.html";
-
-    if (! file_exists($path)) {
-        return redirect('/posts');
-    }
-
-    $post = file_get_contents($path);
-
+Route::get('/posts/{post:slug}', function (Post $post): View {
     return view('post', [
         'post' => $post
     ]);
-})->where('post', '[A-z_\-]+');
+});
+
+Route::get('categories/{category:slug}', function (Category $category): View{
+    return view('posts', [
+        'posts' => $category->posts->load(['category', 'author'])
+    ]);
+});
+
+Route::get('authors/{author:username}', function (User $author): View{
+    return view('posts', [
+        'posts' => $author->posts->load(['category', 'author'])
+    ]);
+});
+

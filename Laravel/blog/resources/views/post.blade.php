@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
+<x-layout>
+        <article>
+            <h1>{{ $post->title }} </h1>
 
-        <title>My Blog</title>
+            <p>
+                By <a href="/authors/{{ $post->author->username }}"> {{ $post->author->name }}</a> in <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
+            </p>
 
-        <link href="/app.css" rel="stylesheet" />
+            <div>{!!  $post->body !!}</div>
 
-
-    </head>
-    <body class="antialiased">
-       <article>
-            <?= $post; ?>
-
-           <a href="/posts">Back to overview</a>
-       </article>
-    </body>
-</html>
+            <a href="/posts">Back to overview</a>
+        </article>
+</x-layout>>

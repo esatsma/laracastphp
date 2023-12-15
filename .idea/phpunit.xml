@@ -5,6 +5,7 @@
       <list>
         <option value="$PROJECT_DIR$/Section 3/tests" />
         <option value="$PROJECT_DIR$/Section 4/demo/tests" />
+        <option value="$PROJECT_DIR$/Laravel/blog/tests" />
       </list>
     </option>
   </component>
