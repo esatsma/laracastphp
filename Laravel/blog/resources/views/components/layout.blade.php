@@ -15,12 +15,21 @@
             </a>
         </div>
 
-        <div class="mt-8 md:mt-0">
-            <a href="/" class="text-xs font-bold uppercase">Home Page</a>
+        <div class="mt-8 md:mt-0 flex flex-row:space-evenly items-center">
+            @auth
+                <div class="mr-4">{{ auth()->user()->name }}</div>
+                <form method="POST" action="/logout">
+                    @csrf
+                    <button class="bg-white text-blue-500 font-semibold uppercase text-sm border-2 border-blue-500 rounded-full px-4 py-2" type="submit">Log out</button>
+                </form>
+            @endauth
+            @guest
+                <a href="/login" class="bg-white text-blue-500 font-semibold uppercase text-xs border-2 border-blue-500 rounded-full px-4 py-2">Log in</a>
+                    <a href="/register" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                        Register
+                    </a>
+            @endguest
 
-            <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
-                Subscribe for Updates
-            </a>
         </div>
     </nav>
 
@@ -36,11 +45,11 @@
 
                 <form method="POST" action="#" class="lg:flex text-sm">
                     <div class="lg:py-3 lg:px-5 flex items-center">
-                        <label for="email" class="hidden lg:inline-block">
+                        <label for="email-subscribe" class="hidden lg:inline-block">
                             <img src="./images/mailbox-icon.svg" alt="mailbox letter">
                         </label>
 
-                        <input id="email" type="text" placeholder="Your email address"
+                        <input id="email-subscribe" type="text" placeholder="Your email address"
                                class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
                     </div>
 
@@ -54,4 +63,6 @@
         </div>
     </footer>
 </section>
+
+<x-flash></x-flash>
 </body>
